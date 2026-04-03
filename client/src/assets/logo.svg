@@ -1,0 +1,9 @@
+<svg width="244" height="56" viewBox="0 0 244 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="240" height="52" rx="18" fill="#FCFBF7"/>
+  <rect x="10" y="10" width="36" height="36" rx="12" fill="#1F3A2F"/>
+  <path d="M18 31.5C20.6796 27.6789 24.7468 25.5 29.0617 25.5C31.2714 25.5 33.4131 26.0677 35.3438 27.1307" stroke="#F7F3E8" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M20 35C22.1798 32.1303 25.4129 30.5 28.8636 30.5C30.5432 30.5 32.1764 30.8862 33.7068 31.6155" stroke="#F7F3E8" stroke-width="2.6" stroke-linecap="round"/>
+  <path d="M32.1324 15.5C32.1324 20.0824 28.4172 23.7976 23.8347 23.7976C23.8347 19.2152 27.5499 15.5 32.1324 15.5Z" fill="#4FBF8B"/>
+  <text x="58" y="26" fill="#1B2A21" font-family="Outfit, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="0.4">MarketNest</text>
+  <text x="58" y="41" fill="#6B7280" font-family="Outfit, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="2">MARKETNEST GROCERY</text>
+</svg>
