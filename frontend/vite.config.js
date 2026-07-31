@@ -11,7 +11,7 @@ export default defineConfig({
     allowedHosts: [".trycloudflare.com"],
     proxy: {
       "/api": {
-        target: "http://localhost:5000", // 👈 backend
+        target: process.env.VITE_API_BASE_URL || "http://localhost:3000",
         changeOrigin: true,
         secure: false,
       },

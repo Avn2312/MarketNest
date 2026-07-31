@@ -10,7 +10,7 @@ const parseOriginList = (origins = "") =>
         .map((origin) => origin.trim())
         .filter(Boolean);
 
-export const PORT = Number(process.env.PORT) || 5000;
+export const PORT = Number(process.env.PORT) || 3000;
 export const NODE_ENV = process.env.NODE_ENV || "development";
 export const JWT_SECRET = process.env.JWT_SECRET || "change-me-in-env";
 export const MONGODB_URI = process.env.MONGODB_URI;
