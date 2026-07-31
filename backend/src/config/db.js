@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
-import { MONGODB_URI } from "./index.js";
+import { MONGODB_URI, DATABASE_URL, ORDER_STORAGE } from "./index.js";
 
 const connectDB = async () => {
     if (!MONGODB_URI) {
+        if (ORDER_STORAGE === "postgres" || DATABASE_URL) {
+            console.log("PostgreSQL active: Skipping MongoDB connection (MONGODB_URI not configured)");
+            return;
+        }
         throw new Error("MONGODB_URI is not configured");
     }
 
@@ -11,7 +15,7 @@ const connectDB = async () => {
     mongoose.connection.removeAllListeners("disconnected");
 
     mongoose.connection.on("connected", () => {
-        console.log("Database Connected");
+        console.log("MongoDB Database Connected");
     });
 
     mongoose.connection.on("error", (error) => {
@@ -22,9 +26,17 @@ const connectDB = async () => {
         console.error("MongoDB disconnected");
     });
 
-    await mongoose.connect(MONGODB_URI, {
-        serverSelectionTimeoutMS: 10000,
-    });
+    try {
+        await mongoose.connect(MONGODB_URI, {
+            serverSelectionTimeoutMS: 5000,
+        });
+    } catch (err) {
+        if (ORDER_STORAGE === "postgres" || DATABASE_URL) {
+            console.warn("MongoDB connection failed, but PostgreSQL is active:", err.message);
+            return;
+        }
+        throw err;
+    }
 };
 
 export default connectDB;
