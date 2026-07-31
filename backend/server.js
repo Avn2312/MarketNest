@@ -27,6 +27,7 @@ import {
     CLOUDINARY_NAME,
     CORS_ORIGINS,
     DATABASE_URL,
+    isAllowedCorsOrigin,
     MESSAGE_QUEUE,
     NODE_ENV,
     PORT,
@@ -79,11 +80,11 @@ const bootstrap = async () => {
     app.use(
         cors({
             origin: (origin, callback) => {
-                if (!origin || CORS_ORIGINS.includes(origin)) {
+                if (isAllowedCorsOrigin(origin)) {
                     return callback(null, true);
                 }
 
-                return callback(new Error("CORS origin not allowed"));
+                return callback(null, false);
             },
             credentials: true,
         })

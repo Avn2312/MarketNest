@@ -38,3 +38,27 @@ export const CORS_ORIGINS = [
         CLIENT_URL,
     ]),
 ];
+
+export const isAllowedCorsOrigin = (origin) => {
+    if (!origin) return true;
+
+    const normalizedOrigin = origin.replace(/\/+$/, "");
+
+    if (
+        CORS_ORIGINS.some(
+            (allowed) => allowed.replace(/\/+$/, "") === normalizedOrigin
+        )
+    ) {
+        return true;
+    }
+
+    if (/\.vercel\.app$/.test(normalizedOrigin) || normalizedOrigin.includes("vercel.app")) {
+        return true;
+    }
+
+    if (/^http:\/\/localhost:\d+$/.test(normalizedOrigin)) {
+        return true;
+    }
+
+    return false;
+};
