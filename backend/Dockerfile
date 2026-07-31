@@ -9,6 +9,8 @@ RUN npm ci --omit=dev && npm cache clean --force
 
 COPY . .
 
+RUN mkdir -p logs && chown -R node:node /app
+
 USER node
 
 EXPOSE 5000
