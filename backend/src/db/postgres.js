@@ -10,8 +10,17 @@ export const createPostgresPool = (connectionString = DATABASE_URL) => {
         throw new Error("DATABASE_URL is not configured.");
     }
 
+    const sanitizedConnectionString =
+        connectionString.includes("sslmode=require") &&
+        !connectionString.includes("uselibpqcompat")
+            ? connectionString.replace(
+                  "sslmode=require",
+                  "uselibpqcompat=true&sslmode=require"
+              )
+            : connectionString;
+
     return new Pool({
-        connectionString,
+        connectionString: sanitizedConnectionString,
         ssl:
             NODE_ENV === "production"
                 ? { rejectUnauthorized: false }
