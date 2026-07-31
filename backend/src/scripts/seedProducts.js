@@ -493,20 +493,19 @@ const configureCloudinary = () => {
     });
 };
 
-const uploadProductImage = async (imageFile) => {
-    const absoluteImagePath = path.join(assetsDir, imageFile);
+const uploadProductImage = async (imageFileName) => {
+    const absoluteImagePath = path.join(assetsDir, imageFileName);
 
-    await fs.access(absoluteImagePath);
-
-    const uploaded = await cloudinary.uploader.upload(absoluteImagePath, {
-        folder: "marketnest/seed-products",
-        resource_type: "image",
-        use_filename: true,
-        unique_filename: false,
-        overwrite: true,
-    });
-
-    return uploaded.secure_url;
+    try {
+        const uploaded = await cloudinary.uploader.upload(absoluteImagePath, {
+            folder: "marketnest/seed-products",
+            resource_type: "image",
+        });
+        return uploaded.secure_url;
+    } catch (error) {
+        console.warn(`Cloudinary upload skipped/failed for ${imageFileName}: ${error.message}. Using GitHub raw asset fallback.`);
+        return `https://raw.githubusercontent.com/Avn2312/MarketNest/main/frontend/src/assets/${imageFileName}`;
+    }
 };
 
 const run = async () => {
