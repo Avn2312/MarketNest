@@ -1,39 +1,55 @@
 # === Node Modules ===
-client/node_modules/
-server/node_modules/
+node_modules/
+**/node_modules/
 
-# === Environment Variables ===
-client/.env
-client/.env.*     # For .env.local, .env.production etc. (Vite-specific)
-server/.env
+# === Environment Variables (Secrets) ===
+.env
+.env.*
+*.env
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
 
-# === Build Output ===
-client/dist/      # Vite build output
-server/dist/
-server/build/
-client/build/
+# === Build & Distribution Output ===
+dist/
+dist-ssr/
+build/
+out/
+**/dist/
+**/build/
 
 # === Logs ===
 *.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# === OS Files ===
+# === OS & System Files ===
 .DS_Store
+.DS_Store?
+._*
 Thumbs.db
+ehthumbs.db
 
-# === Editor Settings ===
+# === Editor & IDE Settings ===
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# === Testing/Coverage ===
+# === Testing & Coverage ===
 coverage/
+.nyc_output/
 
-# === MongoDB Dumps ===
+# === Database Dumps & Uploads ===
 dump/
 
 # === Deployment or Temp Files ===
 render.yaml
 .render-config.json
-*.swp
+
+
+
